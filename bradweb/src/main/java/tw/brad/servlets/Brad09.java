@@ -17,7 +17,7 @@ public class Brad09 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Part part = request.getPart("upload");
 		if (part.getSize() > 0) {
-			part.write("brad.jpg");
+			part.write("brad1.jpg");
 			System.out.println("Upload Success");
 		}else {
 			System.out.println("Upload failure");
