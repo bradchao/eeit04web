@@ -12,15 +12,21 @@ import java.util.Enumeration;
 @WebServlet("/Brad07")
 public class Brad07 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.print("Brad07:doGet\n");
+		doPost(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String account = request.getParameter("account");
 		String passwd = request.getParameter("passwd");
-		System.out.printf("Brad07:doPost:%s:%s\n", account,passwd);
+		String gender = request.getParameter("gender");
+		String[] habits = request.getParameterValues("habits");
+		System.out.printf("%s", gender);
+		try {
+			for(String habit: habits) {
+				System.out.println(habit);
+			}
+		}catch(Exception e) {}
 	}
 	
 }
