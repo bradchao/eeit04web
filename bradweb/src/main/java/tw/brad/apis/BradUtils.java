@@ -7,10 +7,11 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 
 public class BradUtils {
-	public static String loadView() throws Exception {
+	public static String loadView(String view) throws Exception {
 		String source = 
-			"C:\\Users\\User\\git\\repository2\\bradweb\\src\\main\\webapp\\views\\view1.html";
-		File html = new File(source);
+			"C:\\Users\\User\\git\\repository2\\bradweb\\src\\main\\webapp\\views\\%s.html";
+		String sfile = String.format(source, view);
+		File html = new File(sfile);
 		BufferedInputStream bin = 
 			new BufferedInputStream(new FileInputStream(html));
 		byte[] buf = bin.readAllBytes();

@@ -9,8 +9,8 @@ import tw.brad.apis.BradUtils;
 
 import java.io.IOException;
 
-@WebServlet("/Brad18")
-public class Brad18 extends HttpServlet {
+@WebServlet("/Brad19")
+public class Brad19 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String x = (String)request.getAttribute("x");
@@ -20,7 +20,10 @@ public class Brad18 extends HttpServlet {
 		
 		try {
 			String webContent = BradUtils.loadView(view);
-			response.getWriter().print(String.format(webContent, x, y,result));
+			String web = webContent.replaceAll("@x@", x)
+					.replaceAll("@y@", y)
+					.replaceAll("@result@", result);
+			response.getWriter().print(web);
 		}catch(Exception e) {
 			System.out.println(e);
 		}
