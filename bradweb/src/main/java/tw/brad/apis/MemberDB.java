@@ -20,9 +20,6 @@ public class MemberDB {
 	private static final int FIELD_PASSWD = 2;
 	private static final int FIELD_CNAME = 3;
 
-			
-	
-	
 	private Connection conn;
 	
 	public MemberDB() throws Exception {
@@ -48,9 +45,9 @@ public class MemberDB {
 		PreparedStatement pstmt = conn.prepareStatement(SQL_ADD);
 		pstmt.setString(FIELD_CNAME, cname);
 		pstmt.setString(FIELD_ACCOUNT, account);
-		pstmt.setString(FIELD_PASSWD, passwd);
-		
-		return false;
+		pstmt.setString(FIELD_PASSWD, 
+				BCrypt.hashpw(passwd, BCrypt.gensalt()));
+		return pstmt.executeUpdate() > 0;
 	}
 	
 }

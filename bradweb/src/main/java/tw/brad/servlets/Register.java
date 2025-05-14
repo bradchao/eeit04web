@@ -5,11 +5,20 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import tw.brad.apis.MemberDB;
+
 import java.io.IOException;
 
 @WebServlet("/Register")
 public class Register extends HttpServlet {
+	private MemberDB memberDB;
+	
     public Register() {
+    	try {
+    		memberDB = new MemberDB();
+    	}catch(Exception e) {
+    		System.out.println(e);
+    	}
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,10 +33,18 @@ public class Register extends HttpServlet {
 		String passwd = request.getParameter("passwd");
 		String cname = request.getParameter("cname");
 		
-		if (account is not exist?) {
-			add member
+		if (!memberDB.isAccountExist(account)) {
+			try {
+				if (memberDB.addMember(account, passwd, cname)) {
+					response.sendRedirect("brad19.jsp");
+				}else {
+					response.sendRedirect("brad18.jsp?errType=1");
+				}
+			} catch (Exception e) {
+				System.out.println(e);
+			}
 		}else {
-			
+			response.sendRedirect("brad18.jsp?errType=2");
 		}
 		
 		
