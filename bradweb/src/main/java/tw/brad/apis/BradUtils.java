@@ -19,4 +19,17 @@ public class BradUtils {
 		
 		return new String(buf);
 	}
+	
+	public static String calc(String sx, String sy) {
+		try {
+			int x = Integer.parseInt(sx);
+			int y = Integer.parseInt(sy);
+			return x + y + "";
+		}catch(Exception e) {
+			return "";
+		}
+	}
+	
+	
+	
 }
