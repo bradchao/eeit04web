@@ -9,7 +9,12 @@
 	<body>
 		<form>
 			<input name="x" value="${param.x }" />
-			+
+			<select>
+				<option value="1">+</option>
+				<option value="2">-</option>
+				<option value="3">x</option>
+				<option value="4">/</option>
+			</select>
 			<input name="y" value="${param.y }" />
 			<input type="submit" value="=" />
 			<span>${BradUtils.calc(param.x, param.y) }</span>
