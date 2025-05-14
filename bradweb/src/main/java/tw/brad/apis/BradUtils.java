@@ -20,11 +20,19 @@ public class BradUtils {
 		return new String(buf);
 	}
 	
-	public static String calc(String sx, String sy) {
+	public static String calc(String sx, String sy, String op) {
 		try {
 			int x = Integer.parseInt(sx);
 			int y = Integer.parseInt(sy);
-			return x + y + "";
+			StringBuffer sb = new StringBuffer();
+			switch(op) {
+				case "1": sb.append(x + y); break;
+				case "2": sb.append(x - y); break;
+				case "3": sb.append(x * y); break;
+				case "4": sb.append(x / y).append(" ... ").append(x % y) ; 
+							break;
+			}
+			return sb.toString();
 		}catch(Exception e) {
 			return "";
 		}
