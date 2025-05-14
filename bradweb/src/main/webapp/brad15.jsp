@@ -31,7 +31,20 @@
 					out.print("<tr>");
 					for (int j=START; j<START+COLS; j++){
 						int newj = j + k*COLS;
-						out.print("<td>");
+						if (k % 2 == 0){
+							if (j % 2 == 0){
+								out.print("<td bgcolor='yellow'>");
+							}else{
+								out.print("<td bgcolor='pink'>");
+							}
+						}else{
+							if (j % 2 != 0){
+								out.print("<td bgcolor='yellow'>");
+							}else{
+								out.print("<td bgcolor='pink'>");
+							}
+						}
+						
 						for (int i=1; i<=9; i++){
 							int r = newj * i;
 							out.println(String.format("%d x %d = %d<br />",newj, i, r));
