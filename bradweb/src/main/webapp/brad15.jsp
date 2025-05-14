@@ -8,62 +8,21 @@
 	</head>
 	<body>
 		<table border='1' width='100%'>
-			<tr>
-				<td>
-				<%
-					for (int i=1; i<=9; i++){
-						int r = 2 * i;
-						out.println(String.format("2 x %d = %d<br />",i, r));
+			<%
+				for (int k=0; k<2; k++){
+					out.print("<tr>");
+					for (int j=2; j<=5; j++){
+						int newj = j + k*4;
+						out.print("<td>");
+						for (int i=1; i<=9; i++){
+							int r = newj * i;
+							out.println(String.format("%d x %d = %d<br />",newj, i, r));
+						}
+						out.print("</td>");
 					}
-				%>
-				</td>
-				<td>
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-				</td>
-				<td>
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-				</td>
-				<td>
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-				</td>
-			</tr>
-		
-			<tr>
-				<td>
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-				</td>
-				<td>
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-				</td>
-				<td>
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-				</td>
-				<td>
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-					2 x 1 = 2<br />
-				</td>
-			</tr>		
-		
+					out.print("</tr>");
+				}
+			%>
 		</table>
 	</body>
 </html>
