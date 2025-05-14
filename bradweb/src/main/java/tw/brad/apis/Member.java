@@ -30,5 +30,9 @@ public class Member {
 		this.icon = icon;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("%s:%s", account, cname);
+	}
 	
 }
