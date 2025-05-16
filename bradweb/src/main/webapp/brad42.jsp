@@ -7,7 +7,7 @@ https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx
  -->  
 <c:catch var="err">  
 <c:import url="https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx" var="data"></c:import>
-<c:set var="foods" value="${BradUtils.parseFood(data) }"></c:set>
+<c:set var="foods" value="${BradUtils.parseFoodV2(data) }"></c:set>
 
 <sql:setDataSource
 	driver="com.mysql.cj.jdbc.Driver"
@@ -15,7 +15,12 @@ https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx
 	user="root"
 	password="root"
 />
-
+<sql:update>
+	DELETE FROM food
+</sql:update>
+<sql:update>
+	ALTER TABLE food AUTO_INCREMENT = 1
+</sql:update>
 
 <c:forEach items="${foods }" var="food">
 	<sql:update>
@@ -35,7 +40,11 @@ https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx
 		<title>Insert title here</title>
 	</head>
 	<body>
-	${err }
+	<c:choose>
+		<c:when test="${!empty err }">${err }</c:when>
+		<c:otherwise>Finish</c:otherwise>
+	</c:choose>
+	 
 
 
 	

@@ -1,10 +1,11 @@
 package tw.brad.apis;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -63,6 +64,27 @@ public class BradUtils {
 			map.put("addr", food.getString("Address"));
 			
 			foods[i] = map;
+		}
+		
+		return foods;
+	}
+
+	public static List<Map<String,String>> parseFoodV2(String json) {
+		JSONArray root = new JSONArray(json);
+		
+		List<Map<String,String>> foods = new LinkedList<>();
+		
+		for (int i=0; i<root.length(); i++) {
+			JSONObject food = root.getJSONObject(i);
+			
+			TreeMap<String, String> map = new TreeMap<>();
+			map.put("name", food.getString("Name"));
+			map.put("tel", food.getString("Tel"));
+			map.put("city", food.getString("City"));
+			map.put("town", food.getString("Town"));
+			map.put("addr", food.getString("Address"));
+			
+			foods.add(map);
 		}
 		
 		return foods;
