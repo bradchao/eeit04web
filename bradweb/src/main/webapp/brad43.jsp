@@ -8,6 +8,7 @@
 	user="root"
 	password="root"
 />   
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,9 +16,19 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
+		<c:set var="rpp">23</c:set>
+		<c:set var="page">${empty param.page?1:param.page }</c:set>
+		<c:set var="prev">${page==1?1:page-1 }</c:set>
+		<c:set var="next">${page + 1 }</c:set>
+		<c:set var="start">${(page - 1) * rpp }</c:set>
+		
+		<sql:query var="result">
+			SELECT * FROM food LIMIT ${start }, ${rpp }
+		</sql:query>
+	
 		<h1>Brad Big Company</h1>
 		<hr />
-		<a href="">Prev</a> | <a href="">Next</a>
+		<a href="?page=${prev }">Prev</a> | <a href="?page=${next }">Next</a>
 		<hr />
 		<table border="1" width="100%">
 			<tr>
@@ -26,12 +37,13 @@
 				<th>Tel</th>
 			</tr>
 
-		
-			<tr>
-				<td>1</th>
-				<td>Brad</th>
-				<td>123</th>
-			</tr>
+			<c:forEach items="${result.rows }" var="food">
+				<tr>
+					<td>${food.id }</td>
+					<td>${food.name }</td>
+					<td>${food.tel }</td>
+				</tr>
+			</c:forEach>
 			
 		</table>
 	
