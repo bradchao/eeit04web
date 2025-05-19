@@ -93,16 +93,32 @@ public class BradUtils {
 	public static String order2JSON(SortedMap[] rows) {
 		JSONObject root = new JSONObject();
 		if (rows.length > 0) {
-			root.put("customer", rows[0].getOrDefault("CustomerID", ""));
-			root.put("employee", rows[0].getOrDefault("EmployeeID", ""));
+			root.put("customer",
+				String.format("%s (%s)", rows[0].getOrDefault("ContactName", ""),
+						rows[0].getOrDefault("CompanyName", ""))
+			);
+			
+			root.put("employee",
+				String.format("%s %s", rows[0].getOrDefault("FirstName", ""),
+						rows[0].getOrDefault("LastName", ""))
+			);
 			
 			JSONArray details = new JSONArray();
 			for (SortedMap<String, String> row : rows) {
 				JSONObject obj = new JSONObject();
+				
 				obj.put("pid", row.getOrDefault("ProductID", ""));
 				obj.put("price", row.getOrDefault("UnitPrice", ""));
 				obj.put("qty", row.getOrDefault("Quantity", ""));
 				obj.put("pname", row.getOrDefault("ProductName", ""));
+				
+				double temp1 = Double.parseDouble(obj.get("price").toString());
+				int temp2 = Integer.parseInt(obj.get("qty").toString());
+				//System.out.println(temp1*temp2);
+				
+				obj.put("total", temp1*temp2);
+				
+				
 				details.put(obj);
 			}
 			

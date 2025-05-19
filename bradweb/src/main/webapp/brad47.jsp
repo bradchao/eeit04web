@@ -13,9 +13,11 @@
 		SELECT * FROM orderdetails od
 		JOIN orders o ON (od.OrderID = o.OrderID)
 		JOIN products p ON (od.ProductID = p.ProductID)
-		WHERE od.OrderID = ?	
+        JOIN employees e ON (o.EmployeeID = e.EmployeeID)
+        JOIN customers c ON (o.CustomerID = c.CustomerID)
+		WHERE od.OrderID = ?		
 		<sql:param>${param.orderId }</sql:param>	
 	</sql:query>
-	${BradUtils.order2JSON(result.rows) }	
+	${BradUtils.order2JSON(result.rows) }
 </c:catch>
 ${err }
