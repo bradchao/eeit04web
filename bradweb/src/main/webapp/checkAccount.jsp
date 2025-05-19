@@ -1,5 +1,7 @@
+<%@page import="java.util.*"%>
+<%@page import="jakarta.servlet.jsp.jstl.sql.Result"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="tw.brad.apis.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <c:if test="${empty param.account }">
@@ -19,7 +21,19 @@
 	<c:redirect url="login.html"></c:redirect>
 </c:if>
 <c:choose>
-	<c:when test="">
+	<c:when test="${BCrypt.checkpw(param.passwd, rs.rows[0].passwd) }">\
+		<%
+			Result result = (Result)pageContext.getAttribute("rs");
+			Map[] datas = result.getRows();
+			Map data = datas[0];
+		
+			Member member = new Member();
+			member.setId((long)data.get("id"));
+			member.setAccount((String)data.get("account"));
+			member.setCname((String)data.get("cname"));
+			
+			session.setAttribute("member", member);
+		%>
 		<c:redirect url="main.jsp"></c:redirect>
 	</c:when>
 	<c:otherwise>

@@ -1,14 +1,14 @@
 package tw.brad.apis;
 
 public class Member {
-	private int id;
+	private long id;
 	private String account, cname;
 	private String icon;	// base64 format
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getAccount() {
