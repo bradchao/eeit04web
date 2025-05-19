@@ -6,14 +6,15 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			function search(){
+				console.log('search()');
 				$.ajax({
 					url: 'brad47.jsp',
 					method: 'get',
 					data: {
-						"orderid": $('#search').val()
+						"orderId": $('#orderId').val()
 					},
 					success: function(data){
-						
+						console.log(data);
 					}
 				});
 			}
