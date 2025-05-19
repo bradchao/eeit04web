@@ -21,7 +21,20 @@
 	<c:redirect url="login.html"></c:redirect>
 </c:if>
 <c:choose>
-	<c:when test="${BCrypt.checkpw(param.passwd, rs.rows[0].passwd) }">\
+	<c:when test="${BCrypt.checkpw(param.passwd, rs.rows[0].passwd) }">
+		<%
+			Result result = (Result)pageContext.getAttribute("rs");
+			SortedMap row = result.getRows()[0];
+			
+			try{
+				byte[] icon =  (byte[])row.get("icon");
+				String base64 = Base64.getEncoder().encodeToString(icon);
+				row.put("icon", base64);
+			}catch(Exception e){
+				row.put("icon", "");
+			}			
+		
+		%>
 		<c:set var="member" value="${rs.rows[0] }" scope="session"></c:set>
 		<c:redirect url="main.jsp"></c:redirect>
 	</c:when>
