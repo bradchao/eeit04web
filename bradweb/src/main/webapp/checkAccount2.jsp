@@ -22,26 +22,7 @@
 </c:if>
 <c:choose>
 	<c:when test="${BCrypt.checkpw(param.passwd, rs.rows[0].passwd) }">\
-		<%
-			Result result = (Result)pageContext.getAttribute("rs");
-			Map[] datas = result.getRows();
-			Map data = datas[0];
-		
-			Member member = new Member();
-			member.setId((long)data.get("id"));
-			member.setAccount((String)data.get("account"));
-			member.setCname((String)data.get("cname"));
-			
-			try{
-				byte[] icon =  (byte[])data.get("icon");
-				String base64 = Base64.getEncoder().encodeToString(icon);
-				member.setIcon(base64);
-			}catch(Exception e){
-				member.setIcon("");
-			}
-			
-			session.setAttribute("member", member);
-		%>
+		<c:set var="member" value="${rs.rows[0] }" scope="session"></c:set>
 		<c:redirect url="main.jsp"></c:redirect>
 	</c:when>
 	<c:otherwise>

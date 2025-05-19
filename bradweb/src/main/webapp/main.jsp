@@ -13,6 +13,7 @@
 	<body>
 		<h1>Main Page</h1>
 		<div>Welcome, ${member.cname }</div>
+		<img alt="icon" src="data:image/jpeg; base64, ${member.icon }" />
 		<hr />
 		<a href="logout.jsp">Logout</a>
 	</body>
