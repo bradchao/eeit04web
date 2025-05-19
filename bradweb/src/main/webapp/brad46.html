@@ -15,6 +15,24 @@
 					},
 					success: function(data){
 						console.log(data);
+						$('#customer').html(data.customer);
+						$('#employee').html(data.employee);
+						
+						$('#table').empty();
+						$(data.details).each(function(i,row){
+							$('#table').append(
+								'<tr>' +
+								'<td>' + row.pid + '</td>' + 
+								'<td>' + row.pname + '</td>' + 
+								'<td>' + row.price + '</td>' + 
+								'<td>' + row.qty + '</td>' + 
+								'</tr>'
+							);
+						});
+						
+						
+						
+						
 					}
 				});
 			}
