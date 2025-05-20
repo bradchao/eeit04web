@@ -3,6 +3,9 @@ package tw.brad.apis;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +16,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class BradUtils {
+	public static Connection conn;
+	public static void createConnection() {
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://localhost/brad", "root", "root");
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
 	public static String loadView(String view) throws Exception {
 		String source = 
 			"C:\\Users\\User\\git\\repository2\\bradweb\\src\\main\\webapp\\views\\%s.html";
