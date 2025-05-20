@@ -25,7 +25,7 @@ public class MyServer {
 	}
 	@OnMessage
 	public void onMessage(String mesg, Session session) {
-		System.out.println("onMessage()");
+		System.out.println("onMessage():" + mesg);
 		
 	}
 	@OnClose

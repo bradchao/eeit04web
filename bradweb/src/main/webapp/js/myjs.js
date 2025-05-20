@@ -13,6 +13,13 @@ window.onload = function(){
 		connect("ws://10.0.104.177:8080/bradweb/myserver");
 	});
 	
+	send.addEventListener("click",function(){
+		let message = {
+			message: mesg.value
+		};
+		webSocket.send(JSON.stringify(message));
+	});
+	
 	function connect(url){
 		webSocket = new WebSocket(url);
 		webSocket.onopen = function(){
