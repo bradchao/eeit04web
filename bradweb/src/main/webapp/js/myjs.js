@@ -11,6 +11,7 @@ window.onload = function(){
 	let webSocket;
 	start.addEventListener("click",function(){
 		connect("ws://10.0.104.177:8080/bradweb/myserver");
+		
 	});
 	
 	send.addEventListener("click",function(){
